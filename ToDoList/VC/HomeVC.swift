@@ -36,21 +36,24 @@ class HomeVC: UIViewController, GoogleLoginDelegate {
     
     //MARK:- GOOGLE LOGIN DELEGATE
     func getSocialProfile(_ dictUserInfo: typeAliasDictionary) {
-        SharedModel.stopActivityIndicator()
+        //SharedModel.stopActivityIndicator()
         print("Social Profile : \(dictUserInfo)")
         
-        let stUserName: String = dictUserInfo[SOCIAL_NAME] as? String ?? ""
-        let stMobileNumber: String = dictUserInfo[SOCIAL_MOBILE_NO] as? String ?? ""
-        let stSocialEmail: String = dictUserInfo[SOCIAL_EMAIL] as? String ?? ""
+//        let stUserName: String = dictUserInfo[SOCIAL_NAME] as? String ?? ""
+//        let stMobileNumber: String = dictUserInfo[SOCIAL_MOBILE_NO] as? String ?? ""
+//        let stSocialEmail: String = dictUserInfo[SOCIAL_EMAIL] as? String ?? ""
         
         if obj_AppDelegate._SOCIAL_LOGIN == SOCIAL_LOGIN.GOOGLE {
             print("Google: \(String(describing: dictUserInfo[SOCIAL_ID] as? String))")
-            let stSocialID = dictUserInfo[SOCIAL_ID] as? String ?? ""
-//            stGoogle = "1"
+//            let stSocialID = dictUserInfo[SOCIAL_ID] as? String ?? ""
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "idTaskVC") as! TaskVC
             self.navigationController?.pushViewController(vc, animated: true)
-
+            
+            let alert = UIAlertController(title: "ToDoApp", message: "Social Login Successfully", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

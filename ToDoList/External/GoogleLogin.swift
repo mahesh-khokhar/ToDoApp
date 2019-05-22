@@ -81,7 +81,7 @@ class GoogleLogin: NSObject, GIDSignInDelegate, GIDSignInUIDelegate {
         SharedModel.stopActivityIndicator()
         if (error == nil) {
             // Perform any operations on signed in user here.
-            SharedModel.startActivityIndicator(self.viewController.navigationController!.view)
+//            SharedModel.startActivityIndicator(self.viewController.navigationController!.view)
             guard let authentication = user.authentication else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
